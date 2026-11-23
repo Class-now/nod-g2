@@ -3,3 +3,5 @@ dist/
 .nod-sessions.json
 .env
 *.ehpk
+docs/sim/
+demo/

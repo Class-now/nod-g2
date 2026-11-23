@@ -1,12 +1,21 @@
 # Nod — reply to the one email that needs you, from your Even G2
 
-**Track: AI Assistants & Work** (Claude + Google Workspace: Gmail, Calendar)
+**Track: AI Assistants & Work** (Claude + Google Workspace: Gmail, Calendar) · **Live demo:** https://class-now.github.io/nod-g2/?demo=1
+
+- **3 taps** from inbox to a Gmail draft reply, no phone.
+- On a 50-email test inbox (22 need a reply), Claude's triage puts **only threads that need you** in the top 6 (precision 1.00, recall 1.00) — the newest-first list that small screens use today gets 0.50 in its top 6 and misses 86% of what needs a reply.
+- Brief + 3 replies in **1.2 s median** (p90 1.3 s), about **$0.001 per email** (claude-haiku-5-5). Numbers: `eval/results.json`, reproduce with `node eval/triage.mjs`.
+- Every screen runs in the official Even Hub simulator 0.9.5 (screenshots below are captured from it, zero console errors; `bash tools/sim-shots.sh` replays the whole flow headless). Not yet tested on physical G2 hardware; judges can run everything with the demo inbox, no Google account needed.
 
 Between meetings, pulling out your phone to "just check email" turns into ten minutes. Nod puts only the threads that need *you* on the G2's 576×288 display. Claude reduces each one to three lines and the one thing the sender is asking for, and offers three ready replies. Pick one with the R1 ring or a temple tap and Nod saves it as a Gmail draft — **three taps from inbox to reply**. Say a reply out loud and Claude turns your dictation into a proper email. Double-tap for your next meeting and the email that matters for it.
+
+Captured from the Even Hub simulator (576×288 lens):
 
 | Home | Brief | Reply |
 |---|---|---|
 | ![home](docs/home.png) | ![brief](docs/brief.png) | ![reply](docs/reply.png) |
+| **Voice reply** | **Long-press to send** | **Draft saved** |
+| ![voice](docs/voice.png) | ![confirm](docs/confirm.png) | ![done](docs/done.png) |
 
 ## Try it in 1 minute (no account, no keys)
 
