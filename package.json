@@ -1,0 +1,23 @@
+{
+  "name": "nod-g2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Nod: reply to the one email that needs you, from your Even G2.",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "test": "node --test test/*.test.mjs",
+    "server": "node server/index.mjs",
+    "pack": "vite build && evenhub pack app.json dist -o nod.ehpk"
+  },
+  "dependencies": {
+    "@evenrealities/even_hub_sdk": "0.0.16"
+  },
+  "devDependencies": {
+    "@evenrealities/evenhub-cli": "0.2.0",
+    "@evenrealities/evenhub-simulator": "0.9.5",
+    "vite": "^5.4.0"
+  },
+  "license": "MIT"
+}

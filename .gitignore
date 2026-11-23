@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.nod-sessions.json
+.env
+*.ehpk

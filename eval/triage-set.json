@@ -1,0 +1,452 @@
+[
+ {
+  "id": "e49",
+  "from": "Recruiter Bot",
+  "fromEmail": "recruiter.bot@mail.example",
+  "subject": "Jobs you may like",
+  "body": "12 new jobs match your profile.",
+  "received": "2026-11-25T16:43:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e39",
+  "from": "Figma",
+  "fromEmail": "figma@mail.example",
+  "subject": "Hana invited you to \"Launch\"",
+  "body": "You can now view the file.",
+  "received": "2026-11-25T16:33:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e29",
+  "from": "Jira",
+  "fromEmail": "jira@mail.example",
+  "subject": "[PROJ-221] status changed to Done",
+  "body": "Ben moved PROJ-221 to Done.",
+  "received": "2026-11-25T16:23:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e19",
+  "from": "Pat Quinn",
+  "fromEmail": "pat.quinn@mail.example",
+  "subject": "Rent renewal",
+  "body": "Your lease renews Jan 1. Please confirm whether you'll renew by Dec 1.",
+  "received": "2026-11-25T16:13:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e9",
+  "from": "Ben Carter",
+  "fromEmail": "ben.carter@mail.example",
+  "subject": "Approve PTO Dec 22-29?",
+  "body": "Requesting PTO Dec 22-29. Could you approve in the tool or reply here?",
+  "received": "2026-11-25T16:03:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e8",
+  "from": "Sofia Alvarez",
+  "fromEmail": "sofia.alvarez@mail.example",
+  "subject": "Intro: Sofia <> Jordan",
+  "body": "Jordan runs ops at Lumen and wants to compare notes on hiring. Would you be open to a call?",
+  "received": "2026-11-25T15:56:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e48",
+  "from": "Team",
+  "fromEmail": "team@mail.example",
+  "subject": "Office closed Dec 25",
+  "body": "Happy holidays!",
+  "received": "2026-11-25T15:36:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e38",
+  "from": "Zoom",
+  "fromEmail": "zoom@mail.example",
+  "subject": "Cloud recording is now available",
+  "body": "Your recording of \"Design sync\" is ready.",
+  "received": "2026-11-25T15:26:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e28",
+  "from": "Slack",
+  "fromEmail": "slack@mail.example",
+  "subject": "You have 3 new mentions",
+  "body": "See what you missed in #general.",
+  "received": "2026-11-25T15:16:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e18",
+  "from": "Amara Okafor",
+  "fromEmail": "amara.okafor@mail.example",
+  "subject": "Panel moderator?",
+  "body": "Would you moderate the AI panel on Dec 4? 45 minutes, remote is fine.",
+  "received": "2026-11-25T15:06:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e17",
+  "from": "Chris Moore",
+  "fromEmail": "chris.moore@mail.example",
+  "subject": "Sign-off on the release notes",
+  "body": "Release notes attached. Can you sign off so we ship at 5?",
+  "received": "2026-11-25T14:59:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e7",
+  "from": "Alex Kim",
+  "fromEmail": "alex.kim@mail.example",
+  "subject": "Are you joining the offsite?",
+  "body": "Need final numbers for the offsite by Friday. Are you in?",
+  "received": "2026-11-25T14:49:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e47",
+  "from": "Security",
+  "fromEmail": "security@mail.example",
+  "subject": "New sign-in on Mac",
+  "body": "If this was you, you can ignore this email.",
+  "received": "2026-11-25T14:29:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e37",
+  "from": "Kenji Mori",
+  "fromEmail": "kenji.mori@mail.example",
+  "subject": "Notes from today",
+  "body": "Notes from today's sync are in the doc. Nothing needed from you.",
+  "received": "2026-11-25T14:19:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e27",
+  "from": "Stripe",
+  "fromEmail": "stripe@mail.example",
+  "subject": "Your receipt from Acme Cloud",
+  "body": "Receipt #1932. Amount paid $29.00.",
+  "received": "2026-11-25T14:09:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e16",
+  "from": "Yuki Tanaka",
+  "fromEmail": "yuki.tanaka@mail.example",
+  "subject": "Lunch tomorrow?",
+  "body": "In your area tomorrow, lunch at 12:30?",
+  "received": "2026-11-25T13:52:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e6",
+  "from": "Mia Rossi",
+  "fromEmail": "mia.rossi@mail.example",
+  "subject": "Quick question on the deck",
+  "body": "Should slide 4 use the old pricing or the new one? Presenting in an hour.",
+  "received": "2026-11-25T13:42:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e46",
+  "from": "Spotify",
+  "fromEmail": "spotify@mail.example",
+  "subject": "Your 2026 Wrapped is here",
+  "body": "See your year in music.",
+  "received": "2026-11-25T13:22:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e36",
+  "from": "Dana Whitfield",
+  "fromEmail": "dana.whitfield@mail.example",
+  "subject": "FYI - signed copy attached",
+  "body": "Signed copy for your records, no action needed.",
+  "received": "2026-11-25T13:12:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e26",
+  "from": "Calendar",
+  "fromEmail": "calendar@mail.example",
+  "subject": "Updated: Design sync @ 14:00",
+  "body": "Location changed to Room 4B.",
+  "received": "2026-11-25T13:02:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e25",
+  "from": "Weekly Digest",
+  "fromEmail": "weekly.digest@mail.example",
+  "subject": "This week in wearables",
+  "body": "Top stories from the week.",
+  "received": "2026-11-25T12:55:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e15",
+  "from": "Sam Lee",
+  "fromEmail": "sam.lee@mail.example",
+  "subject": "Following up on the offer",
+  "body": "Just checking whether you had a chance to look at the offer letter. Any questions?",
+  "received": "2026-11-25T12:45:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e5",
+  "from": "Omar Haddad",
+  "fromEmail": "omar.haddad@mail.example",
+  "subject": "Budget number for Q1",
+  "body": "Finance needs your team's Q1 headcount number by tomorrow noon. What should I put?",
+  "received": "2026-11-25T12:35:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e45",
+  "from": "Conference",
+  "fromEmail": "conference@mail.example",
+  "subject": "Your ticket for DevSummit",
+  "body": "Show this QR code at the door.",
+  "received": "2026-11-25T12:15:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e35",
+  "from": "HR",
+  "fromEmail": "hr@mail.example",
+  "subject": "Reminder: benefits enrollment closes Dec 15",
+  "body": "No action needed if you already enrolled.",
+  "received": "2026-11-25T12:05:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e34",
+  "from": "Newsletter",
+  "fromEmail": "newsletter@mail.example",
+  "subject": "The Batch: new models this week",
+  "body": "This week in AI.",
+  "received": "2026-11-25T11:58:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e24",
+  "from": "Airline",
+  "fromEmail": "airline@mail.example",
+  "subject": "Your boarding pass for DXB -> NRT",
+  "body": "Your boarding pass is attached.",
+  "received": "2026-11-25T11:48:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e14",
+  "from": "Nora Fischer",
+  "fromEmail": "nora.fischer@mail.example",
+  "subject": "Your talk title?",
+  "body": "We print the program tomorrow. What title should we use for your talk?",
+  "received": "2026-11-25T11:38:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e4",
+  "from": "Laura Chen",
+  "fromEmail": "laura.chen@mail.example",
+  "subject": "Dinner Saturday?",
+  "body": "Dinner at our place Saturday around 7. Can you make it?",
+  "received": "2026-11-25T11:28:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e44",
+  "from": "Alex Kim",
+  "fromEmail": "alex.kim@mail.example",
+  "subject": "Thanks!",
+  "body": "Thanks for the help yesterday, all sorted now.",
+  "received": "2026-11-25T11:08:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e33",
+  "from": "Bank",
+  "fromEmail": "bank@mail.example",
+  "subject": "Your statement is ready",
+  "body": "Your November statement is available.",
+  "received": "2026-11-25T10:51:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e23",
+  "from": "GitHub",
+  "fromEmail": "github@mail.example",
+  "subject": "[nod] CI passed on main",
+  "body": "All checks have passed.",
+  "received": "2026-11-25T10:41:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e13",
+  "from": "Ivan Petrov",
+  "fromEmail": "ivan.petrov@mail.example",
+  "subject": "Server migration window",
+  "body": "Can we take the API down Sunday 2-4am for the migration? Need a yes before Thursday.",
+  "received": "2026-11-25T10:31:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e3",
+  "from": "Priya Natarajan",
+  "fromEmail": "priya.natarajan@mail.example",
+  "subject": "Feedback on candidate today?",
+  "body": "Could you send your feedback on Sam by end of day? Yes/no plus one line is enough.",
+  "received": "2026-11-25T10:21:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e43",
+  "from": "IT",
+  "fromEmail": "it@mail.example",
+  "subject": "Scheduled maintenance Saturday",
+  "body": "Email may be slow between 1 and 3am.",
+  "received": "2026-11-25T10:01:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e42",
+  "from": "Medium",
+  "fromEmail": "medium@mail.example",
+  "subject": "Stories for you",
+  "body": "Five reads picked for you.",
+  "received": "2026-11-25T09:54:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e32",
+  "from": "Amazon",
+  "fromEmail": "amazon@mail.example",
+  "subject": "Your package was delivered",
+  "body": "Delivered to front door.",
+  "received": "2026-11-25T09:44:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e22",
+  "from": "Tom Becker",
+  "fromEmail": "tom.becker@mail.example",
+  "subject": "Pick a date for the review",
+  "body": "Options for the design review: Tue 11, Wed 3, Thu 10. Which works?",
+  "received": "2026-11-25T09:34:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e12",
+  "from": "Grace Liu",
+  "fromEmail": "grace.liu@mail.example",
+  "subject": "Reference for Tom",
+  "body": "Tom listed you as a reference. Could you share two sentences on working with him?",
+  "received": "2026-11-25T09:24:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e2",
+  "from": "Kenji Mori",
+  "fromEmail": "kenji.mori@mail.example",
+  "subject": "Can we move Thursday sync?",
+  "body": "Something came up Thursday morning. Could we move our 10:00 to the afternoon?",
+  "received": "2026-11-25T09:14:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e41",
+  "from": "Notion",
+  "fromEmail": "notion@mail.example",
+  "subject": "Weekly summary",
+  "body": "5 pages were edited in your workspace.",
+  "received": "2026-11-25T08:47:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e31",
+  "from": "LinkedIn",
+  "fromEmail": "linkedin@mail.example",
+  "subject": "You appeared in 12 searches",
+  "body": "See who is looking at your profile.",
+  "received": "2026-11-25T08:37:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e21",
+  "from": "Elena Ruiz",
+  "fromEmail": "elena.ruiz@mail.example",
+  "subject": "Can you cover my 1:1s?",
+  "body": "I'm out sick. Could you cover my two 1:1s this afternoon?",
+  "received": "2026-11-25T08:27:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e11",
+  "from": "Leo Martin",
+  "fromEmail": "leo.martin@mail.example",
+  "subject": "Invoice 2231 - wrong amount?",
+  "body": "We were billed $4,800 but the quote said $4,200. Can you confirm which is right?",
+  "received": "2026-11-25T08:17:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e1",
+  "from": "Dana Whitfield",
+  "fromEmail": "dana.whitfield@mail.example",
+  "subject": "Contract redlines - need your OK by 3pm",
+  "body": "Legal sent back the redlines. Two changes. I need your OK before I send it back at 3pm.",
+  "received": "2026-11-25T08:07:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e50",
+  "from": "Laura Chen",
+  "fromEmail": "laura.chen@mail.example",
+  "subject": "Photos from Saturday",
+  "body": "Here are the photos!",
+  "received": "2026-11-25T07:50:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e40",
+  "from": "Uber",
+  "fromEmail": "uber@mail.example",
+  "subject": "Your Tuesday evening trip",
+  "body": "Thanks for riding. Total $18.40.",
+  "received": "2026-11-25T07:40:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e30",
+  "from": "Google Docs",
+  "fromEmail": "google.docs@mail.example",
+  "subject": "Mia commented on \"Q1 plan\"",
+  "body": "\"Looks good to me\" - Mia.",
+  "received": "2026-11-25T07:30:00+04:00",
+  "label": false
+ },
+ {
+  "id": "e20",
+  "from": "Mum",
+  "fromEmail": "mum@mail.example",
+  "subject": "Flights for Christmas",
+  "body": "Did you book your flights yet? Let me know your arrival time so Dad can pick you up.",
+  "received": "2026-11-25T07:20:00+04:00",
+  "label": true
+ },
+ {
+  "id": "e10",
+  "from": "Hana Sato",
+  "fromEmail": "hana.sato@mail.example",
+  "subject": "Which venue?",
+  "body": "Two options for the launch: the rooftop (cheaper) or the gallery (bigger). Which do you prefer?",
+  "received": "2026-11-25T07:10:00+04:00",
+  "label": true
+ }
+]
