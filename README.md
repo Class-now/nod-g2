@@ -63,6 +63,10 @@ G2 ──BLE── Even App (WebView: Nod, Even Hub SDK 0.0.16)
 - Mail bodies stay in backend memory for the session; only the Google refresh token is written to disk (mode 600).
 - Quoted history and signatures are stripped before a thread is sent to Claude.
 - Drafts by default; sending needs a second choice.
+- The recipient is always the sender of Gmail's own copy of the thread, held on the backend; the app never sends an address.
+- A failed send or save shows a plain line on the glasses ("Not sent. Nothing left your outbox.", "Daily send limit reached. Try tomorrow.") with Try again, never an error code.
+- A repeated send for the same thread (a double tap, a retried request) returns the first result: one tap sequence, one email. A failed send is not retried on its own; you choose again.
+- Hard limits (`server/guards.mjs`, tested in `test/guards.test.mjs`): 20 sends a day per account, 200 Claude calls a day per network address (the demo code is public), and 10 wrong pairing codes an hour per address before the backend answers 429.
 
 ## Run with your own Gmail
 

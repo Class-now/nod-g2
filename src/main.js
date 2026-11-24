@@ -74,6 +74,7 @@ async function run(fx) {
     console.error(fx.type, e);
     if (fx.type === 'brief') dispatch({ kind: 'briefError', id: fx.id, error: String(e.message || e) });
     else if (fx.type === 'mic') dispatch({ kind: 'voiceError', error: String(e.message || e) });
+    else if (fx.type === 'save') dispatch({ kind: 'saveError', mode: fx.mode, draftId: fx.draftId, error: String(e.message || e) });
   }
 }
 

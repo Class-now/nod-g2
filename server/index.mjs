@@ -12,6 +12,7 @@ import { brief, polishVoice, needsReply } from './claude.mjs';
 import * as google from './google.mjs';
 import { inbox as demoInbox, nextMeeting as demoMeeting, demoVoice } from '../src/fixtures.js';
 import { cleanBody } from '../src/core.js';
+import { onceMap, limiter, tooMany } from './guards.mjs';
 
 const PORT = Number(process.env.PORT || 8787);
 const PUBLIC_URL = process.env.PUBLIC_URL || `http://localhost:${PORT}`;
@@ -23,6 +24,12 @@ const sessions = fs.existsSync(STORE) ? JSON.parse(fs.readFileSync(STORE, 'utf8'
 const save = () => fs.writeFileSync(STORE, JSON.stringify(Object.fromEntries(Object.entries(sessions).map(([k, v]) => [k, { refresh: v.refresh }]))), { mode: 0o600 });
 const mem = new Map(); // code -> { msgs: Map, briefs: Map, snoozed: Map }
 const oauthStates = new Map();
+// Guards: one email per thread per tap sequence, a daily send cap per account, a daily cap on
+// model calls per network address (the demo code is public), and few wrong pairing codes per hour.
+const sendOnce = onceMap();
+const sendCap = limiter(Number(process.env.NOD_SEND_DAILY || 20), 864e5);
+const modelCap = limiter(Number(process.env.NOD_MODEL_DAILY || 200), 864e5);
+const badCode = limiter(10, 36e5);
 
 function ctx(code) {
   if (!mem.has(code)) mem.set(code, { msgs: new Map(), briefs: new Map(), snoozed: new Map() });
@@ -61,9 +68,10 @@ async function transcribe(wavB64) {
 
 const routes = {
   'GET /api/inbox': (code) => getInbox(code),
-  'POST /api/brief': async (code, { id }) => {
+  'POST /api/brief': async (code, { id }, ip) => {
     const c = ctx(code);
     if (c.briefs.has(id)) return c.briefs.get(id);
+    if (!modelCap.take(ip)) throw tooMany('daily limit reached');
     const m = c.msgs.get(id);
     if (!m) throw Object.assign(new Error('unknown thread'), { status: 404 });
     const b = await brief({ ...m, body: cleanBody(m.body) });
@@ -71,7 +79,8 @@ const routes = {
     c.briefs.set(id, b);
     return b;
   },
-  'POST /api/voice': async (code, { id, wav }) => {
+  'POST /api/voice': async (code, { id, wav }, ip) => {
+    if (!modelCap.take(ip)) throw tooMany('daily limit reached');
     const m = ctx(code).msgs.get(id);
     const heard = wav ? await transcribe(wav) : (demoVoice[id]?.heard || '');
     if (!heard) throw new Error('nothing heard');
@@ -82,9 +91,16 @@ const routes = {
     if (!sessions[code]) return { ok: true, draftId: 'demo-' + Date.now(), mode };
     const g = google.client(sessions[code]);
     const m = ctx(code).msgs.get(id);
-    const d = draftId || await g.draft(m, text);
-    if (mode === 'send') { await g.send(d); await g.markRead(id); }
-    return { ok: true, draftId: d, mode };
+    if (!m) throw Object.assign(new Error('unknown thread'), { status: 404 });
+    if (mode !== 'send') return { ok: true, draftId: draftId || await g.draft(m, text), mode };
+    // The recipient is always the sender of Gmail's own copy of the thread (msg.fromEmail), never
+    // a value from the request. A repeated send for the same thread returns the first result.
+    return sendOnce(code + ':' + id, async () => {
+      if (!sendCap.take(code)) throw tooMany('daily send limit reached');
+      const d = draftId || await g.draft(m, text);
+      await g.send(d); await g.markRead(id);
+      return { ok: true, draftId: d, mode };
+    });
   },
   'POST /api/undo': async (code, { draftId }) => { if (sessions[code]) await google.client(sessions[code]).deleteDraft(draftId); return { ok: true }; },
   'POST /api/snooze': async (code, { id }) => { ctx(code).snoozed.set(id, Date.now() + 3600e3); return { ok: true }; },
@@ -119,10 +135,14 @@ http.createServer(async (req, res) => {
     const key = `${req.method} ${url.pathname}`;
     if (!routes[key]) return send(res, 404, { error: 'not found' });
     const code = (req.headers.authorization || '').replace(/^Bearer\s+/, '') || '000000';
-    if (code !== '000000' && !sessions[code]) return send(res, 401, { error: 'unknown pairing code' });
+    const ip = req.socket.remoteAddress || '?';
+    if (code !== '000000' && !sessions[code]) {
+      if (!badCode.take(ip)) return send(res, 429, { error: 'too many wrong codes, try in an hour' });
+      return send(res, 401, { error: 'unknown pairing code' });
+    }
     let body = {};
     if (req.method === 'POST') { let s = ''; for await (const ch of req) { s += ch; if (s.length > 8e6) throw new Error('too large'); } body = s ? JSON.parse(s) : {}; }
-    send(res, 200, await routes[key](code, body));
+    send(res, 200, await routes[key](code, body, ip));
   } catch (e) {
     console.error(e);
     send(res, e.status || 500, { error: String(e.message || e) });

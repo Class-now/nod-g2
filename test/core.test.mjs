@@ -86,3 +86,17 @@ test('cleanBody drops quotes and signatures', () => {
   assert.equal(cleanBody('Hi\nok?\n-- \nDana\n'), 'Hi\nok?');
   assert.equal(cleanBody('Yes\n\nOn Mon, X wrote:\n> old'), 'Yes');
 });
+
+test('a failed send shows a plain line and is retried only by a new choice', () => {
+  let { s, fx } = run(start(), { kind: 'click', index: 1 }, { kind: 'brief', id: 't2', brief: inbox[1].brief }, { kind: 'click' }, { kind: 'long', index: 0 }, { kind: 'click', index: 0 });
+  ({ s, fx } = run(s, { kind: 'saveError', mode: 'send', error: '503 upstream' }));
+  assert.equal(s.screen, 'done');
+  assert.deepEqual(fx, []);
+  assert.match(view(s).texts[0].content, /Not sent\. Nothing left your outbox\./);
+  assert.ok(s.threads.find(t => t.id === 't2'), 'unsent thread stays in the list');
+  ({ s, fx } = run(s, { kind: 'click', index: 0 }));
+  assert.deepEqual(fx, [{ type: 'save', id: 't2', text: inbox[1].brief.replies[0], mode: 'send' }]);
+  ({ s } = run(s, { kind: 'saveError', mode: 'send', error: '429 {"error":"daily send limit reached"}' }));
+  assert.match(view(s).texts[0].content, /Daily send limit reached/);
+  for (const it of view(s).lists[0].items) assert.ok(bytes(it) <= 63);
+});

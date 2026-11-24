@@ -114,9 +114,11 @@ export function view(state) {
         sent: `Sent to ${r.to} ✓`,
         snoozed: `Snoozed ${r.to} for 1h`,
         done: `Marked ${r.to} done`,
+        failed: r.error,
       }[r.kind];
-      const items = r.kind === 'draft' ? ['Back to inbox', 'Send it now', 'Undo draft'] : ['Back to inbox'];
-      return page('done', [text('head', 0, 0, W, 80, `${msg}\n${state.taps} taps from inbox`, { brightness: 3 })],
+      const items = r.kind === 'draft' ? ['Back to inbox', 'Send it now', 'Undo draft'] : r.kind === 'failed' ? ['Try again', 'Back to inbox'] : ['Back to inbox'];
+      const sub = r.kind === 'failed' ? `To ${r.to}` : `${state.taps} taps from inbox`;
+      return page('done', [text('head', 0, 0, W, 80, `${msg}\n${sub}`, { brightness: 3 })],
         [list('items', 0, 84, W, H - 84, items)], MENU);
     }
     case 'meeting': {
@@ -153,6 +155,7 @@ export function step(prev, input) {
   if (k === 'voiceText') { s.voice = { phase: 'thinking', heard: input.heard }; return { state: s, effects: fx }; }
   if (k === 'voiceReply') { s.voice = { ...s.voice, phase: 'ready', reply: input.reply }; return { state: s, effects: fx }; }
   if (k === 'voiceError') { s.voice = { phase: 'error', error: input.error }; fx.push({ type: 'mic', on: false }); return { state: s, effects: fx }; }
+  if (k === 'saveError') { s.result = { kind: 'failed', to: shortName(t?.from), mode: input.mode, draftId: input.draftId, error: saveErrorLine(input.mode, input.error) }; s.screen = 'done'; return { state: s, effects: fx }; }
   if (k === 'saved') { s.result = { kind: input.mode === 'send' ? 'sent' : 'draft', to: shortName(t?.from), draftId: input.draftId }; s.screen = 'done'; return { state: s, effects: fx }; }
   if (k === 'menu') return menuStep(s, input.itemId, fx);
 
@@ -201,6 +204,7 @@ export function step(prev, input) {
     case 'done':
       if (k === 'click') {
         const i = input.index ?? 0;
+        if (s.result.kind === 'failed' && i === 0) { fx.push({ type: 'save', id: t.id, text: s.pending.text, mode: s.result.mode, ...(s.result.draftId ? { draftId: s.result.draftId } : {}) }); break; }
         if (s.result.kind === 'draft' && i === 1) { fx.push({ type: 'save', id: t.id, text: s.pending.text, mode: 'send', draftId: s.result.draftId }); break; }
         if (s.result.kind === 'draft' && i === 2) { fx.push({ type: 'undo', id: t.id, draftId: s.result.draftId }); s.screen = 'reply'; break; }
         if (s.result.kind === 'sent' || s.result.kind === 'done') removeThread(s, t?.id);
@@ -238,4 +242,11 @@ export function cleanBody(body) {
     out.push(l);
   }
   return out.join('\n').trim().slice(0, 4000);
+}
+
+// A failed save or send is shown in plain words on the glasses, never as an error code.
+// Nothing is retried on its own: "Try again" is a new choice by the user.
+export function saveErrorLine(mode, error = '') {
+  if (/^429/.test(error)) return mode === 'send' ? 'Daily send limit reached. Try tomorrow.' : 'Too many requests. Try later.';
+  return mode === 'send' ? 'Not sent. Nothing left your outbox.' : 'Draft not saved.';
 }
